@@ -14,30 +14,26 @@ export default function PromptInput({
   onChange,
   disabled = false,
 }: PromptInputProps) {
-  const placeholders = {
-    text: 'Enter your prompt for text generation...',
-    image: 'Describe the image you want to generate...',
-    voice: 'Enter the text you want to convert to speech...',
-  };
-
   return (
     <div className="space-y-2">
-      <label htmlFor="prompt" className="block text-sm font-medium text-gray-700">
+      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
         Prompt
       </label>
-      <div className="relative">
-        <textarea
-          id="prompt"
-          rows={4}
-          disabled={disabled}
-          className="w-full px-4 py-3 border border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-none transition-shadow duration-200"
-          placeholder={placeholders[contentType]}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
-        <div className="absolute bottom-3 right-3 text-sm text-gray-400">
-          {value.length} / 1000
-        </div>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+        className="w-full min-h-[120px] p-3 rounded-lg border border-gray-200 dark:border-gray-700 
+          bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+          placeholder-gray-400 dark:placeholder-gray-500
+          focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 
+          focus:border-blue-500 dark:focus:border-blue-400
+          disabled:opacity-50 disabled:cursor-not-allowed
+          transition-shadow duration-200"
+        placeholder={`Enter your prompt for ${contentType} generation...`}
+      />
+      <div className="text-right text-sm text-gray-500 dark:text-gray-400">
+        {value.length} / 1000
       </div>
     </div>
   );
